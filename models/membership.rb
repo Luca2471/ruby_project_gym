@@ -12,14 +12,18 @@ class Membership
 
   def save()
     sql = "INSERT INTO memberships
-    (
+     (
       price
       )
       VALUES
       (
-        $1
-        )
-        RETURNING id"
+      $1
+      )
+      RETURNING id"
+      values = [@price]
+      result = SqlRunner.run( sql, values )
+      id = result.first['id']
+      @id = id
     end
 
     def self.all()

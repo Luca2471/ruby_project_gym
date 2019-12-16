@@ -7,7 +7,8 @@ class Class
 
   def initialize( options )
     @id = options['id'].to_i if options['id']
-    @time = options['time'].to_s if options['time']
+    @name = options['name']
+    @time = options['time']
     @human_id = options['human_id'].to_i
     @membership_id = options['membership_id'].to_i
   end
@@ -15,20 +16,47 @@ class Class
   def save()
     sql = "INSERT INTO classes
     (
-      time
+      name,
+      time,
+      human_id,
+      membership_id
       )
       VALUES
       (
-        $1
+        $1, $2, $3, $4
         )
       RETURNING id"
+      values = [@name, @time, @huma_id, @membership_id]
+      result = SqlRunner.run( sql, values)
+      id = result.fisrt['id']
+      @id = id
   end
+
+  def update()
+    sql = "UPDATE classes
+    SET
+    (
+      name,
+      time,
+      human_id,
+      membership_id
+      ) =
+      (
+        $1, $2, $3, $4
+      )
+      WHERE id = $5"
+      values = [@name, @time, @human_id, @membership_id]
+      SqlRunner.run( sql, values )
+  end
+
 
   def self.all()
     sql = "SELECT * FROM  classes"
     result = SqlRunner.run( sql )
     return result.map { |hash| Classe.new( hash ) }
   end
+
+
 
   def self.find( id )
     sql = "SELECT * FROM  classes
@@ -65,5 +93,7 @@ class Class
     values = [id]
     SqlRunner.run( sql, values)
   end
+
+  
 
 end

@@ -24,6 +24,10 @@ class Human
       $1, $2, $3
       )
       RETURNING id"
+      values = [@first_name, @surname, @age]
+      result = SqlRunner.run( sql, values)
+      id = result.first['id']
+      @id = id
   end
 
   def self.all()
@@ -44,5 +48,9 @@ class Human
     sql = "DELETE FROM humans"
     SqlRunner.run( sql )
   end
-  
+
+  def format_name
+    returning "#{@first_name.capitize} #{@surname.capitalize}"
+  end
+
 end

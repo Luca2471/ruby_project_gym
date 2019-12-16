@@ -10,51 +10,35 @@ Membership.delete_all()
 human1 = Human.new({
   "first_name" => "Keanu",
   "surname" => "Reeves",
-  "age" => 55
-  })
-
-human1.save()
-
+  "age" => 55 })
 human2 = Human.new({
   "first_name" => "Arnold",
   "surname" => "Schwarzenegger",
-  "age" => 72
-  })
-
-human2.save()
-
+  "age" => 72 })
 human3 = Human.new({
   "first_name" => "Uma"
   "surnmae" => "Thurman"
-  "age" => 49
-  })
+  "age" => 49 })
 
+human1.save()
+human2.save()
 human3.save()
 
 class1 = Class.new({
   "name" => "Zumba"
-  "time" => "10:30am"
-  })
-
-class1.save()
-
+  "time" => "10:30am" })
 class2 = Class.new({
     "name" => "Kickboxing"
-    "time" => "5:30pm"
-    })
-
-class2.save
-
+    "time" => "5:30pm" })
 class3 = Class.new({
   "name" => "spin"
-  "time" => "3:pm"
-  })
+  "time" => "3:pm" })
 
+class1.save()
+class2.save()
 class3.save()
 
-membership = Membership.new({
-  "price" => 25.00
-  })
+membership = Membership.new({"price" => 25.00})
 
 membership.save()
 
