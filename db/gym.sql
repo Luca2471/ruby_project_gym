@@ -18,6 +18,6 @@ CREATE TABLE humans
 CREATE TABLE Classes
 (
   id SERIAL PRIMARY KEY,
-  membership_id INT REFERENCES memberships(id)
-  humans_id INT REFERENCES humans(id);
-)
+  membership_id INT REFERENCES memberships(id),
+  humans_id INT REFERENCES humans(id)
+);
