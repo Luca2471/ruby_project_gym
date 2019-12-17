@@ -13,7 +13,7 @@ class Human
   end
 
   def save()
-    sql = "INSERT INTO human
+    sql = "INSERT INTO humans
     (
      first_name,
      surname,

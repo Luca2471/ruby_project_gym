@@ -3,7 +3,7 @@ require( 'sinatra/contrib/all' )
 require( 'pry' )
 also_reload( '../models/*' )
 
-get '/classes' do
-  @gym_classes = GymClass.all()
+get '/sessions' do
+  @session = Session.all()
   erb ( :"classes/index")
 end

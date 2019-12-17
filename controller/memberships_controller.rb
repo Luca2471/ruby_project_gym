@@ -4,6 +4,6 @@ require( 'pry' )
 also_reload( '../models/*' )
 
 get '/memberships' do
-  @gym_classes = GymClass.all()
+  @membershps = Mebership.all()
   erb ( :"memberships/index")
 end
