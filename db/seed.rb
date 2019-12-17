@@ -1,8 +1,8 @@
 require_relative( "../models/class.rb" )
 require_relative( "../models/human.rb" )
-require_relative( "../models/membership.rb" )
+require_relative( "../models/membership.rb")
 
-require( 'pry' )
+require('pry')
 
 Class.delete_all()
 Human.delete_all()

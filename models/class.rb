@@ -32,8 +32,6 @@ class Class
       @id = id
   end
 
-
-
   def update()
     sql = "UPDATE classes
     SET
