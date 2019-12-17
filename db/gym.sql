@@ -1,4 +1,4 @@
-DROP TABLE classes;
+DROP TABLE gym_classes;
 DROP TABLE memberships;
 DROP TABLE humans;
 
@@ -14,10 +14,10 @@ CREATE TABLE memberships
 (
   id SERIAL primary key,
   price INT,
-  human_id INT REFERENCES humans(id) ON DELETE CASCADE 
+  human_id INT REFERENCES humans(id) ON DELETE CASCADE
 );
 
-CREATE TABLE classes
+CREATE TABLE gym_classes
 (
   id SERIAL primary key,
   name VARCHAR(255),

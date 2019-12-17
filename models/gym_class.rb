@@ -1,6 +1,6 @@
 require_relative('../db/sql_runner')
 
-class Class
+class GymClass
 
   attr_reader( :id )
   attr_accessor( :name, :time, :human_id, :membership_id )
@@ -14,7 +14,7 @@ class Class
   end
 
   def save()
-    sql = "INSERT INTO classes
+    sql = "INSERT INTO gym_classes
     (
       name,
       time,
@@ -33,7 +33,7 @@ class Class
   end
 
   def update()
-    sql = "UPDATE classes
+    sql = "UPDATE gym_classes
     SET
     (
       name,
@@ -50,21 +50,21 @@ class Class
   end
 
   def self.all
-    sql = "SELECT * FROM classes"
+    sql = "SELECT * FROM gym_classes"
     results = SqlRunner.run( sql )
-    return results.map { |hash| Class.new( hash ) }
+    return results.map { |gym_class| GymClass.new( gym_class ) }
   end
 
   def self.find( id )
-    sql = "SELECT * FROM classes
+    sql = "SELECT * FROM gym_classes
     WHERE id = $1"
     values = [id]
     results = SqlRunner.run( sql, values )
-    return Class.new( results.first )
+    return GymClass.new( results.first )
   end
 
   def self.delete_all
-    sql = "DELETE FROM classes"
+    sql = "DELETE FROM gym_classes"
     SqlRunner.run( sql )
   end
 
@@ -85,7 +85,7 @@ class Class
   end
 
   def self.destroy(id)
-    sql = "DELETE FROM classes
+    sql = "DELETE FROM gym_classes
     WHERE id = $1"
     values = [id]
     SqlRunner.run( sql, values )
