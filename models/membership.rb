@@ -3,11 +3,11 @@ require_relative('../db/sql_runner')
 class Membership
 
   attr_reader( :id )
-  attr_accessor ( :price )
+  attr_accessor( :price,  :human_id)
 
   def initialize( options )
     @id = options['id'].to_i if options ['id']
-    @price = options['id'].to_i if options ['id']
+    @price = options['price'].to_i
     @human_id = options['human_id'].to_i
   end
 
@@ -23,15 +23,15 @@ class Membership
       )
       RETURNING id"
       values = [@price, @human_id]
-      result = SqlRunner.run( sql, values )
-      id = result.first['id']
+      results = SqlRunner.run( sql, values )
+      id = results.first['id']
       @id = id
     end
 
     def self.all()
       sql = "SELECT * FROM  memberships"
-      result = SqlRunner.run(sql)
-      return result.map { |hash| Membership.new( hash ) }
+      results = SqlRunner.run(sql)
+      return results.map { |membership| Membership.new( membership ) }
     end
 
     def self.find( id )
@@ -39,7 +39,7 @@ class Membership
       WHERE id = $1"
       values = [id]
       resut = SqlRunner.run( sql, values )
-      return Membership.new( result.first )
+      return Membership.new( results.first )
     end
 
     def self.delete_all

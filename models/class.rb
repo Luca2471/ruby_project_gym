@@ -2,8 +2,8 @@ require_relative('../db/sql_runner')
 
 class Class
 
-  attr_reader( :id)
-  attr_accessor( :name, :type )
+  attr_reader( :id )
+  attr_accessor( :name, :time, :human_id, :membership_id )
 
   def initialize( options )
     @id = options['id'].to_i if options['id']
@@ -24,13 +24,15 @@ class Class
       VALUES
       (
         $1, $2, $3, $4
-        )
+      )
       RETURNING id"
-      values = [@name, @time, @huma_id, @membership_id]
-      result = SqlRunner.run( sql, values)
-      id = result.fisrt['id']
+      values = [@name, @time, @human_id, @membership_id]
+      results = SqlRunner.run( sql, values)
+      id = results.fisrt['id']
       @id = id
   end
+
+
 
   def update()
     sql = "UPDATE classes
@@ -49,21 +51,18 @@ class Class
       SqlRunner.run( sql, values )
   end
 
-
-  def self.all()
-    sql = "SELECT * FROM  classes"
-    result = SqlRunner.run( sql )
-    return result.map { |hash| Classe.new( hash ) }
+  def self.all
+    sql = "SELECT * FROM classes"
+    results = SqlRunner.run( sql )
+    return results.map { |hash| Class.new( hash ) }
   end
 
-
-
   def self.find( id )
-    sql = "SELECT * FROM  classes
+    sql = "SELECT * FROM classes
     WHERE id = $1"
     values = [id]
-    result = SqlRunner.run( sql, values )
-    return Classe.new( results.first )
+    results = SqlRunner.run( sql, values )
+    return Class.new( results.first )
   end
 
   def self.delete_all
@@ -75,15 +74,15 @@ class Class
     sql = "SELECT * FROM humans
     WHERE id = $1"
     values = [@human_id]
-    result = Sqlrunner.run( sql, values )
-    return Human.new( result.first )
+    results = Sqlrunner.run( sql, values )
+    return Human.new( results.first )
   end
 
   def membership()
     sql = "SELECT * FROM memership
     WHERE id = $1"
     values = [@membership_id]
-    result = Sqlrunner.run( sql, values )
+    results = Sqlrunner.run( sql, values )
     return Membership.new( result.first )
   end
 
@@ -91,9 +90,7 @@ class Class
     sql = "DELETE FROM classes
     WHERE id = $1"
     values = [id]
-    SqlRunner.run( sql, values)
+    SqlRunner.run( sql, values )
   end
-
-
 
 end

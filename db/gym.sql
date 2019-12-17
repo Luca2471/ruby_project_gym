@@ -2,13 +2,6 @@ DROP TABLE classes;
 DROP TABLE memberships;
 DROP TABLE humans;
 
-CREATE TABLE memberships
-(
-  id SERIAL primary key,
-  price INT,
-  human_id INT REFERENCES humans(id)
-);
-
 CREATE TABLE humans
 (
   id SERIAL primary key,
@@ -17,11 +10,18 @@ CREATE TABLE humans
   age VARCHAR(255)
 );
 
+CREATE TABLE memberships
+(
+  id SERIAL primary key,
+  price INT,
+  human_id INT REFERENCES humans(id) ON DELETE CASCADE 
+);
+
 CREATE TABLE classes
 (
   id SERIAL primary key,
   name VARCHAR(255),
   time VARCHAR(255),
   humans_id INT REFERENCES humans(id),
-  membership_id INT REFERENCES memberships(id),
+  membership_id INT REFERENCES memberships(id)
 );

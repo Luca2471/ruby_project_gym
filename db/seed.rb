@@ -1,7 +1,8 @@
-require_relative( "../models/classes.rb" )
-require_relative( "../models/humans.rb" )
-require_relative( "../models/memberships.rb" )
-require( "pry" )
+require_relative( "../models/class.rb" )
+require_relative( "../models/human.rb" )
+require_relative( "../models/membership.rb" )
+
+require( 'pry' )
 
 Class.delete_all()
 Human.delete_all()
@@ -16,8 +17,8 @@ human2 = Human.new({
   "surname" => "Schwarzenegger",
   "age" => 72 })
 human3 = Human.new({
-  "first_name" => "Uma"
-  "surnmae" => "Thurman"
+  "first_name" => "Uma",
+  "surnmae" => "Thurman",
   "age" => 49 })
 
 human1.save()
@@ -25,13 +26,13 @@ human2.save()
 human3.save()
 
 class1 = Class.new({
-  "name" => "Zumba"
+  "name" => "Zumba",
   "time" => "10:30am" })
 class2 = Class.new({
-    "name" => "Kickboxing"
-    "time" => "5:30pm" })
+  "name" => "Kickboxing",
+  "time" => "5:30pm" })
 class3 = Class.new({
-  "name" => "spin"
+  "name" => "spin",
   "time" => "3:pm" })
 
 class1.save()

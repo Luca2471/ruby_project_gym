@@ -8,8 +8,8 @@ class Human
   def initialize( options )
     @id = options['id'].to_i if options['id']
     @first_name = options['first_name']
-    @surname = oprtions['surname']
-    @age = oprtions['age'].to_i if options['age']
+    @surname = options['surname']
+    @age = options['age'].to_i if options['age']
   end
 
   def save()
@@ -25,23 +25,23 @@ class Human
       )
       RETURNING id"
       values = [@first_name, @surname, @age]
-      result = SqlRunner.run( sql, values)
-      id = result.first['id']
+      results = SqlRunner.run( sql, values )
+      id = results.first['id']
       @id = id
   end
 
   def self.all()
     sql = "SELECT * FROM humans"
-    result = SqlRunner.run( sql )
-    return result.map { |hash| Human.new( hash ) }
+    results = SqlRunner.run( sql )
+    return results.map { |human| Human.new( human ) }
   end
 
   def self.find( id )
     sql = "SELECT * FROM humans
     WHERE id = $1"
     values = [id]
-    result = SqlRunner.run( sql, values)
-    return Human.new( result.first )
+    results = SqlRunner.run( sql, values)
+    return Human.new( results.first )
   end
 
   def self.delete_all
@@ -68,7 +68,5 @@ class Human
       values = [@first_name, @surname, @age]
       SqlRunner.run( sql, values )
   end
-
-
 
 end
