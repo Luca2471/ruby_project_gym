@@ -8,19 +8,21 @@ class Membership
   def initialize( options )
     @id = options['id'].to_i if options ['id']
     @price = options['id'].to_i if options ['id']
+    @human_id = options['human_id'].to_i
   end
 
   def save()
     sql = "INSERT INTO memberships
      (
-      price
+      price,
+      human_id
       )
       VALUES
       (
-      $1
+      $1, $2
       )
       RETURNING id"
-      values = [@price]
+      values = [@price, @human_id]
       result = SqlRunner.run( sql, values )
       id = result.first['id']
       @id = id
@@ -43,6 +45,21 @@ class Membership
     def self.delete_all
       sql = "DELETE FROM memberships"
       SqlRunner.run( sql )
+    end
+
+    def update()
+      sql = "UPDATE memberships
+      SET
+      (
+        price,
+        human_id
+        ) =
+        (
+          $1, $2
+        )
+        WHERE id = $3"
+        values = [@price, @human_id]
+        SqlRunner.run( sql, values )
     end
 
 end

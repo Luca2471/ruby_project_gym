@@ -4,21 +4,22 @@ DROP TABLE humans;
 
 CREATE TABLE memberships
 (
-  id SERIAL PRIMARY KEY,
-  price INT
+  id SERIAL primary key,
+  price INT,
+  human_id INT REFERENCES humans(id)
 );
 
 CREATE TABLE humans
 (
-  id SERIAL PRIMARY KEY,
+  id SERIAL primary key,
   first_name VARCHAR(255),
   surname VARCHAR(255),
-  age VARCAR(255)
+  age VARCHAR(255)
 );
 
-CREATE TABLE Classes
+CREATE TABLE classes
 (
-  id SERIAL PRIMARY KEY,
+  id SERIAL primary key,
   name VARCHAR(255),
   time VARCHAR(255),
   humans_id INT REFERENCES humans(id),

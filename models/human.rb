@@ -53,4 +53,22 @@ class Human
     returning "#{@first_name.capitize} #{@surname.capitalize}"
   end
 
+  def update()
+    sql = "UPDATE humans
+    SET
+    (
+      first_name,
+      surname,
+      age
+      ) =
+      (
+        $1, $2, $3
+      )
+      WHERE id = $4"
+      values = [@first_name, @surname, @age]
+      SqlRunner.run( sql, values )
+  end
+
+
+
 end

@@ -88,12 +88,12 @@ class Class
   end
 
   def self.destroy(id)
-    sql = "DELETE DROM classes
+    sql = "DELETE FROM classes
     WHERE id = $1"
     values = [id]
     SqlRunner.run( sql, values)
   end
 
-  
+
 
 end
