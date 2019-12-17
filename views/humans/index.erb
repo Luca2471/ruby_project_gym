@@ -1,7 +1,12 @@
-<h1>Information about humans</h1>
+<h2>Information about humans</h2>
 
+<div id="human-wrapper">
+  <% @humans.each do |human| %>
 
-<ul>
-  <li>name: </li>
-  <li>age: </li>
-</ul>
+<div class="human">
+  <h3><a href="/humans/<%= human.id %>"><%= human.format_name %></a></h3>
+  <p>age: <%= human.age %></p>
+  </div>
+
+  <% end %>
+</div>

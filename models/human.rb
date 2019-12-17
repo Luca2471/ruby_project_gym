@@ -50,7 +50,7 @@ class Human
   end
 
   def format_name
-    returning "#{@first_name.capitize} #{@surname.capitalize}"
+    return "#{@first_name.capitalize} #{@surname.capitalize}"
   end
 
   def update()

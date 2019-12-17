@@ -1,0 +1,6 @@
+<h2><%= @human.format_name %></h2>
+<br>
+<a href="/humans/ <%= @human.id %>/edit">Edit</a>
+<form action="/humans/<$= @humans.id %>/delete" method="POST">
+  <input type="submit" value="Delete">
+</form>
