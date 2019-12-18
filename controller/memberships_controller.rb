@@ -11,12 +11,35 @@ get '/memberships' do
   erb ( :"memberships/index")
 end
 
-get '/humans/new' do
+get '/memberships/new' do
   @memberships = Membership.all
-  erb(:"humans/new")
+  erb(:"memberships/new")
 end
 
-post '/humans' do
-  Human.new(params).save
+post '/memberships' do
+  Membership.new(params).save
   redirect to '/humans'
+end
+
+get '/memberships/:id' do
+  @membership = Membership.find(params['id'])
+  erb(:"memberships/show")
+end
+
+get '/memberships/:id/edit' do
+  @membership = Membership.all(params['id'])
+  @humans = Human.all
+  erb(:"memberships/edit")
+end
+
+post 'memberships/:id' do
+  membership = Membership.new(params)
+  humans.update
+  redirect to "/memberships/#{params['id']}"
+end
+
+post 'memberships/:id/delete' do
+  membership = Membership.find(params['id'])
+  membership.delete
+  redirect to '/memberships'
 end

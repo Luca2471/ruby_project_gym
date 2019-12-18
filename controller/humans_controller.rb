@@ -16,19 +16,30 @@ get '/humans/new' do
   erb(:"humans/new")
 end
 
-get '/humans/:id/edit' do
-  @human = Human.all(params['id'])
-  @memberships = Membership.all
-  erb(:"humans/edit")
-end
-
-post '/humans/:id/delete' do
-  human = Human.find(params['id'])
-  human.delete
+post '/humans' do
+  Human.new(params).save
   redirect to '/humans'
 end
 
 get '/humans/:id' do
   @human = Human.find(params['id'])
   erb(:"humans/show")
+end
+
+get '/humans/:id/edit' do
+  @human = Human.all(params['id'])
+  @memberships = Membership.all
+  erb(:"humans/edit")
+end
+
+post '/humans/:id' do
+  human = Human.new(params)
+  human.update
+  redirect to "/humans/#{params['id']}"
+end
+
+post '/humans/:id/delete' do
+  human = Human.find(params['id'])
+  human.delete
+  redirect to '/humans'
 end

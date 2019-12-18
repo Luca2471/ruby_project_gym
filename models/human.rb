@@ -30,10 +30,26 @@ class Human
       @id = id
   end
 
+  def update()
+    sql = "UPDATE humans
+    SET
+    (
+      first_name,
+      surname,
+      age
+      ) =
+      (
+        $1, $2, $3
+      )
+      WHERE id = $4"
+      values = [@first_name, @surname, @age]
+      SqlRunner.run( sql, values )
+  end
+
   def self.all()
     sql = "SELECT * FROM humans"
     results = SqlRunner.run( sql )
-    return results.map { |human| Human.new( human ) }
+    return results.map { |hash| Human.new( hash ) }
   end
 
   def self.find( id )
@@ -53,20 +69,6 @@ class Human
     return "#{@first_name.capitalize} #{@surname.capitalize}"
   end
 
-  def update()
-    sql = "UPDATE humans
-    SET
-    (
-      first_name,
-      surname,
-      age
-      ) =
-      (
-        $1, $2, $3
-      )
-      WHERE id = $4"
-      values = [@first_name, @surname, @age]
-      SqlRunner.run( sql, values )
-  end
+
 
 end
