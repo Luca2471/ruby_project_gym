@@ -10,7 +10,6 @@ class Session
     @name = options['name']
     @time = options['time']
     @human_id = options['human_id'].to_i
-    @membership_id = options['membership_id'].to_i
   end
 
   def save()
@@ -18,15 +17,14 @@ class Session
     (
       name,
       time,
-      human_id,
-      membership_id
+      human_id
       )
       VALUES
       (
-        $1, $2, $3, $4
+        $1, $2, $3
       )
       RETURNING id"
-      values = [@name, @time, @human_id, @membership_id]
+      values = [@name, @time, @human_id]
       results = SqlRunner.run( sql, values)
       id = results.first['id']
       @id = id
@@ -38,14 +36,13 @@ class Session
     (
       name,
       time,
-      human_id,
-      membership_id
+      human_id
       ) =
       (
-        $1, $2, $3, $4
+        $1, $2, $3
       )
-      WHERE id = $5"
-      values = [@name, @time, @human_id, @membership_id, @id]
+      WHERE id = $4"
+      values = [@name, @time, @human_id, @id]
       SqlRunner.run( sql, values )
   end
 

@@ -28,7 +28,7 @@ end
 
 get '/sessions/:id/edit' do
   @session = Session.find(params['id'])
-  @human = Human.all
+  @humans = Human.all
   erb(:"sessions/edit")
 end
 

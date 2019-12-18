@@ -1,6 +1,8 @@
-<h2>Make a new class</h2>
+<h2>Create a new class</h2>
 <form method="POST" action="/sessions">
   <div class="form-wrapper">
+
+
 
     <div class="form-el">
       <label for="name">Name of the class:</label>
@@ -18,4 +20,27 @@
 
   </div>
 
+</form>
+
+
+
+<h3>Book a session</h3>
+<form action="/sessions" method="post">
+  <label>Select your name:
+    <select name="human_id">
+      <% for human in @humans %>
+      <option value="<%= human.id %>"><%= human.name %></option>
+      <% end %>
+    </select>
+  </label>
+
+  <label> Select the Session:
+    <select name="session_id">
+      <% for session in @sessions %>
+      <option value="<%= session.id %>"><%= session.name %></option>
+      <% end %>
+    </select>
+  </label>
+
+<input class="book a class" type="submit" value="book">
 </form>

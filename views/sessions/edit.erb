@@ -11,8 +11,17 @@
       <label for="time">Time:</label>
       <input type="time" name="time" id="time" value="<%= @session.time %>"/>
     </div>
-    <input type="submit" value="save">
 
+    <label>
+       Select a name:
+      <select name="human_id">
+        <% for human in @humans %>
+        <option value="<%= human.id %>"><%= human.first_name %></option>
+        <% end %>
+      </select>
+    </label>
+
+    <input type="submit" value="save changes">
   </div>
 
 </form>
