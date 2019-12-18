@@ -27,44 +27,48 @@ human1.save()
 human2.save()
 human3.save()
 
-membership1 = Membership.new({
-  "price" => 25.00,
-  "human_id" => human1.id })
-
-membership2 = Membership.new({
-  "price" => 25.00,
-  "human_id" => human2.id })
-
-membership3 = Membership.new({
-  "price" => 25.00,
-  "human_id" => human3.id })
-
-membership1.save()
-membership2.save()
-membership3.save()
-
-
 session1 = Session.new({
   "name" => "Zumba",
   "time" => "10:30am",
-  "human_id" => human1.id,
-  "membership_id" => membership1.id })
+  "human_id" => human1.id
+  })
+
 
 session2 = Session.new({
   "name" => "Kickboxing",
   "time" => "5:30pm",
-  "human_id" => human2.id,
-  "membership_id" => membership2.id})
+  "human_id" => human2.id
+  })
+
 
 session3 = Session.new({
   "name" => "spin",
   "time" => "3:00pm",
-  "human_id" => human3.id,
-  "membership_id" => membership3.id })
+  "human_id" => human3.id
+  })
 
-session1.save()
-session2.save()
-session3.save()
+  session1.save()
+  session2.save()
+  session3.save()
+
+membership1 = Membership.new({
+  "price" => 25.00,
+  "human_id" => human1.id,
+  "session_id" => session2.id})
+
+membership2 = Membership.new({
+  "price" => 25.00,
+  "human_id" => human2.id,
+  "session_id" => session2.id })
+
+membership3 = Membership.new({
+  "price" => 25.00,
+  "human_id" => human3.id,
+  "session_id" => session1.id})
+
+membership1.save()
+membership2.save()
+membership3.save()
 
 binding.pry
 nil

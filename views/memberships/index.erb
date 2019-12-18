@@ -1,14 +1,13 @@
 
-
 <ul>
   <% for membership in @memberships %>
   <li>
 <p><%= membership.human.format_name %>
 </p>
+<hr>
 <p>
   <%= membership.session.name %>
 </p>
-<hr>
   </li>
   <% end %>
 </ul>

@@ -13,6 +13,8 @@ end
 
 get '/sessions/new' do
   @sessions = Session.all
+  @humans = Human.all
+
   erb(:"sessions/new")
 end
 

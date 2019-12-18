@@ -1,5 +1,5 @@
-DROP TABLE sessions;
 DROP TABLE memberships;
+DROP TABLE sessions;
 DROP TABLE humans;
 
 CREATE TABLE humans
@@ -10,18 +10,18 @@ CREATE TABLE humans
   age VARCHAR(255)
 );
 
-CREATE TABLE memberships
-(
-  id SERIAL primary key,
-  price INT,
-  human_id INT REFERENCES humans(id) ON DELETE CASCADE
-);
-
 CREATE TABLE sessions
 (
   id SERIAL primary key,
   name VARCHAR(255),
   time VARCHAR(255),
-  human_id INT REFERENCES humans(id) ON DELETE CASCADE ,
-  membership_id INT REFERENCES memberships(id) ON DELETE CASCADE
+  human_id INT REFERENCES humans(id) ON DELETE CASCADE
+);
+
+CREATE TABLE memberships
+(
+  id SERIAL primary key,
+  price INT,
+  human_id INT REFERENCES humans(id) ON DELETE CASCADE,
+  session_id INT REFERENCES sessions(id) ON DELETE CASCADE
 );

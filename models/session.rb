@@ -72,4 +72,22 @@ class Session
     SqlRunner.run( sql, values )
   end
 
+
+  def humans()
+  sql = "SELECT h.* FROM sessions h INNER JOIN memberships m ON m.human_id = h.id WHERE m.session_id = $1;"
+  values = [@id]
+  results = SqlRunner.run(sql, values)
+  return results.map { |hash| Human.new(hash) }
+end
+
+
+def human()
+  sql = "SELECT * FROM humans
+  WHERE id = $1"
+  values = [@human_id]
+  result = SqlRunner.run( sql, values )
+  return Human.new( result.first )
+end
+
+
 end

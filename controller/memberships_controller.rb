@@ -6,10 +6,12 @@ require_relative( '../models/membership.rb')
 require_relative( '../models/session.rb')
 also_reload( '../models/*' )
 
-get '/memberships' do
-  @membershps = Mebership.all()
-  erb ( :"memberships/index")
+get '/booked' do
+  @humans= Human.all
+  @sessions = Session.all
+  erb ( :"bitings/new" )
 end
+
 
 get '/memberships/new' do
   @memberships = Membership.all

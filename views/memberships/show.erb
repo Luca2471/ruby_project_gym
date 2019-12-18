@@ -1,0 +1,8 @@
+
+<ul>
+  <% for membership in @memberships %>
+  <li>
+<p><%= membership.human.format_name %> <%= membership.session.name %> </p>
+  </li>
+  <% end %>
+</ul>
