@@ -35,11 +35,10 @@ end
 post '/humans/:id' do
   human = Human.new(params)
   human.update
-  redirect to "/humans/#{params['id']}"
+  redirect to "/humans"
 end
 
 post '/humans/:id/delete' do
-  human = Human.find(params['id'])
-  human.delete
+  Human.delete(params['id'])
   redirect to '/humans'
 end

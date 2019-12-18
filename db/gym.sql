@@ -22,6 +22,6 @@ CREATE TABLE sessions
   id SERIAL primary key,
   name VARCHAR(255),
   time VARCHAR(255),
-  human_id INT REFERENCES humans(id),
-  membership_id INT REFERENCES memberships(id)
+  human_id INT REFERENCES humans(id) ON DELETE CASCADE ,
+  membership_id INT REFERENCES memberships(id) ON DELETE CASCADE
 );
