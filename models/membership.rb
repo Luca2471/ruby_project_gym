@@ -58,7 +58,7 @@ class Membership
           $1, $2
         )
         WHERE id = $3"
-        values = [@price, @human_id]
+        values = [@price, @human_id, @id]
         SqlRunner.run( sql, values )
     end
 

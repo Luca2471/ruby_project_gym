@@ -1,0 +1,18 @@
+<h2>Edit <%= @session.name %></h2>
+<form method="POST" action="/sessions/<%= @session.id %>">
+  <div class="form-wrapper">
+
+    <div class="form-el">
+      <label for="name">Name:</label>
+      <input type="text" name="name" value="name" value="<%= @session.name %>"/>
+    </div>
+
+    <div class="form-el">
+      <label for="time">Time:</label>
+      <input type="time" name="time" id="time" value="<%= @session.time %>"/>
+    </div>
+    <input type="submit" value="save">
+
+  </div>
+
+</form>

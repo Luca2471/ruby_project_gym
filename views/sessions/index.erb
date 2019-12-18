@@ -3,12 +3,16 @@
 <div id="session-wrapper">
   <% @sessions.each do |session| %>
 
-<div class="session">
-  <h3><a href="/sessions/<%= session.id %>"></a></h3>
-  <p>Name: <%= session.name %></p>
+<div class="sessions">
+  <h3><a href="/sessions/<%= session.id %>"><%= session.name %></a></h3>
   <p>Time: <%= session.time %></p>
- <br>
+  <hr>
   </div>
 
+
+
   <% end %>
+
+  <li class="menu-item"><a href="/sessions/new">New class</a></li>
+
 </div>

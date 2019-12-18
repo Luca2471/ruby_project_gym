@@ -35,11 +35,10 @@ end
 post 'memberships/:id' do
   membership = Membership.new(params)
   humans.update
-  redirect to "/memberships/#{params['id']}"
+  redirect to "/memberships"
 end
 
 post 'memberships/:id/delete' do
-  membership = Membership.find(params['id'])
-  membership.delete
+  Membership.delete(params['id'])
   redirect to '/memberships'
 end

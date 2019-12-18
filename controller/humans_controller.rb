@@ -8,7 +8,7 @@ also_reload( '../models/*' )
 
 get '/humans' do
   @humans = Human.all()
-  erb (:"humans/index")
+  erb(:"humans/index")
 end
 
 get '/humans/new' do

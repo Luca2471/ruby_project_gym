@@ -11,7 +11,7 @@ Membership.delete_all()
 human1 = Human.new({
   "first_name" => "Keanu",
   "surname" => "Reeves",
-  "age" => 55 })
+  "age" => 55})
 
 human2 = Human.new({
   "first_name" => "Arnold",

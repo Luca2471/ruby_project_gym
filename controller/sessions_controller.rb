@@ -8,12 +8,12 @@ also_reload( '../models/*' )
 
 get '/sessions' do
   @sessions = Session.all()
-  erb ( :"sessions/index")
+  erb( :"sessions/index")
 end
 
 get '/sessions/new' do
   @sessions = Session.all
-  erb(:"memberships/new")
+  erb(:"sessions/new")
 end
 
 post '/sessions' do
@@ -21,13 +21,13 @@ post '/sessions' do
   redirect to '/sessions'
 end
 
-get '/sessions/id' do
-  @sessin = Session.find(params['id'])
-  erb(:"session/show")
+get '/sessions/:id' do
+  @session = Session.find(params['id'])
+  erb(:"sessions/show")
 end
 
 get '/sessions/:id/edit' do
-  @session = Session.all(params['id'])
+  @session = Session.find(params['id'])
   @human = Human.all
   erb(:"sessions/edit")
 end
@@ -35,11 +35,10 @@ end
 post '/sessions/:id' do
   session = Session.new(params)
   session.update
-  redirect to "/sessions/#{params['id']}"
+  redirect to "/sessions"
 end
 
 post '/sessions/:id/delete' do
-  session = Session.find(params['id'])
-  session.delete
+  Session.delete(params['id'])
   redirect to '/sessions'
 end

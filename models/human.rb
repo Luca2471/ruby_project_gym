@@ -42,7 +42,7 @@ class Human
         $1, $2, $3
       )
       WHERE id = $4"
-      values = [@first_name, @surname, @age]
+      values = [@first_name, @surname, @age, @id]
       SqlRunner.run( sql, values )
   end
 
@@ -75,7 +75,5 @@ class Human
   def format_name
     return "#{@first_name.capitalize} #{@surname.capitalize}"
   end
-
-
 
 end

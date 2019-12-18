@@ -45,11 +45,11 @@ class Session
         $1, $2, $3, $4
       )
       WHERE id = $5"
-      values = [@name, @time, @human_id, @membership_id]
+      values = [@name, @time, @human_id, @membership_id, @id]
       SqlRunner.run( sql, values )
   end
 
-  def self.all
+  def self.all()
     sql = "SELECT * FROM sessions"
     results = SqlRunner.run( sql )
     return results.map { |hash| Session.new( hash ) }
@@ -66,22 +66,6 @@ class Session
   def self.delete_all
     sql = "DELETE FROM sessions"
     SqlRunner.run( sql )
-  end
-
-  def human()
-    sql = "SELECT * FROM humans
-    WHERE id = $1"
-    values = [@human_id]
-    results = Sqlrunner.run( sql, values )
-    return Human.new( results.first )
-  end
-
-  def membership()
-    sql = "SELECT * FROM memership
-    WHERE id = $1"
-    values = [@membership_id]
-    results = Sqlrunner.run( sql, values )
-    return Membership.new( result.first )
   end
 
   def self.delete(id)
