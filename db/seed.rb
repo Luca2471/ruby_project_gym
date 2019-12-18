@@ -9,8 +9,8 @@ Human.delete_all()
 Membership.delete_all()
 
 human1 = Human.new({
-  "first_name" => "Keanu",
-  "surname" => "Reeves",
+  "first_name" => "Uma",
+  "surname" => "Thurman",
   "age" => 55})
 
 human2 = Human.new({
@@ -19,8 +19,8 @@ human2 = Human.new({
   "age" => 72 })
 
 human3 = Human.new({
-  "first_name" => "Uma",
-  "surname" => "Thurman",
+  "first_name" => "Keanu",
+  "surname" => "Reeves",
   "age" => 49 })
 
 human1.save()
@@ -54,7 +54,7 @@ session3 = Session.new({
 membership1 = Membership.new({
   "price" => 25.00,
   "human_id" => human1.id,
-  "session_id" => session2.id})
+  "session_id" => session1.id})
 
 membership2 = Membership.new({
   "price" => 25.00,
@@ -64,7 +64,7 @@ membership2 = Membership.new({
 membership3 = Membership.new({
   "price" => 25.00,
   "human_id" => human3.id,
-  "session_id" => session1.id})
+  "session_id" => session3.id})
 
 membership1.save()
 membership2.save()
