@@ -84,7 +84,7 @@ class Session
     return Membership.new( result.first )
   end
 
-  def self.destroy(id)
+  def self.delete(id)
     sql = "DELETE FROM sessions
     WHERE id = $1"
     values = [id]

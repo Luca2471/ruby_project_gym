@@ -1,4 +1,4 @@
-<h2>Edit <%= @human.format_name %></h2>
+<h2 Edit <%= @human.format_name %></h2>
 <form method="POST" action="/humans/<%= @human.id %>">
   <div class="form-wrapper">
 
@@ -16,6 +16,7 @@
       <label for="age">First Name:</label>
       <input type="number" name="age" id="age" value="<%= @human.age %>"/>
     </div>
+    <input type="submit"  value="save">
 
   </div>
 

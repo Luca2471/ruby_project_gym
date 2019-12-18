@@ -27,7 +27,7 @@ get '/humans/:id' do
 end
 
 get '/humans/:id/edit' do
-  @human = Human.all(params['id'])
+  @human = Human.find(params['id'])
   @memberships = Membership.all
   erb(:"humans/edit")
 end

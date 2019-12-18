@@ -65,6 +65,13 @@ class Human
     SqlRunner.run( sql )
   end
 
+  def self.delete(id)
+    sql = "DELETE FROM humans
+    WHERE id = $1"
+    values = [id]
+    SqlRunner.run( sql, values )
+  end
+
   def format_name
     return "#{@first_name.capitalize} #{@surname.capitalize}"
   end
